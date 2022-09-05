@@ -17,9 +17,10 @@ return new class extends Migration
             $table->id();
             $table->string('name', 255);
             $table->string('description', 1000);
-            $table->integer('category_id');
+            $table->foreignId('category_id');
+            $table->foreign('category_id')->references('id')->on('categories');
             $table->string('image', 255);
-            $table->decimal('price');
+            $table->integer('price');
             $table->boolean('active');
         });
     }
