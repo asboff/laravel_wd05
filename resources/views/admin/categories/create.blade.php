@@ -43,13 +43,19 @@
             <div class="col-lg-12 col-xlg-12 col-md-12">
                 <div class="card">
                     <div class="card-body">
+
                         <form action="{{ route('categories.store') }}" class="form-horizontal form-material mx-2" method="POST">
                             @csrf
                             <div class="form-group">
                                 <label class="col-md-12">Full Name</label>
                                 <div class="col-md-12">
-                                    <input name="name" type="text" class="form-control form-control-line">
+                                    <input name="name" type="text" class="form-control form-control-line {{$errors->has('name') ? 'is-invalid':''}}" value={{ old('name') }}>
                                 </div>
+                                @if($errors->has('name'))
+                                    @foreach($errors->get('name') as $error)
+                                        {{ $error }}
+                                    @endforeach
+                                @endif
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-12">
