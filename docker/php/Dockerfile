@@ -27,3 +27,5 @@ RUN bash nodesource_setup.sh
 RUN apt-get install nodejs
 RUN rm nodesource_setup.sh
 RUN npm install -g yarn
+RUN chown -R www-data:www-data /var/www
+RUN chmod -R 777 /var/www
