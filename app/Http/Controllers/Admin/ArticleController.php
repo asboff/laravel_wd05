@@ -16,7 +16,7 @@ class ArticleController extends Controller
     public function index()
     {
         $articles = Article::paginate(10);
-        return view('');
+        return view('admin.articles.index', compact('articles'));
     }
 
     /**
@@ -26,7 +26,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        return view('');
+        return view('admin.articles.create');
     }
 
     /**
@@ -37,8 +37,11 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
+        if ($request->hasFile('image')){
+            $request->image = $request->image->path();
+        }
         Article::create($request->all());
-        return redirect(route(''));
+        return redirect(route('articles.index'));
     }
 
     /**
@@ -60,8 +63,8 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        return view('', compact('article'));
-        return redirect(route(''));
+        return view('admin.articles.edit', compact('article'));
+        return redirect(route('articles.index'));
     }
 
     /**
@@ -73,9 +76,12 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
+        if ($request->hasFile('image')){
+            $request->image = $request->image->path();
+        }
         $article->fill($request->all());
         $article->save();
-        return redirect(route(''));
+        return redirect(route('articles.index'));
     }
 
     /**
@@ -87,6 +93,6 @@ class ArticleController extends Controller
     public function destroy(Article $article)
     {
         $article->delete();
-        return redirect(route(''));
+        return redirect(route('articles.index'));
     }
 }
