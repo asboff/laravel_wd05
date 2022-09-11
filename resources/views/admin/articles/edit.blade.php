@@ -62,7 +62,7 @@
                             <div class="form-group">
                                 <label class="col-md-12">Edit Text</label>
                                 <div class="col-md-12">
-                                    <input name="image" type="file" class="form-control form-control-line" value="{{ $article->image }}">
+                                    <input name="image" type="file" class="form-control form-control-line">
                                 </div>
                             </div>
                             <div class="form-group">

@@ -44,7 +44,7 @@
                 <div class="card">
                     <div class="card-body">
 
-                        <form action="{{ route('articles.store') }}" class="form-horizontal form-material mx-2" method="POST">
+                        <form action="{{ route('articles.store') }}" class="form-horizontal form-material mx-2" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <label class="col-md-12">Name</label>

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ArticleRequest;
 use App\Models\Article;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ArticleController extends Controller
 {
@@ -38,6 +40,7 @@ class ArticleController extends Controller
     public function store(Request $request)
     {
         if ($request->hasFile('image')){
+            $path = $request->image->store('articles');
             $request->image = $request->image->path();
         }
         Article::create($request->all());
@@ -77,6 +80,7 @@ class ArticleController extends Controller
     public function update(Request $request, Article $article)
     {
         if ($request->hasFile('image')){
+            $path = $request->image->store('articles');
             $request->image = $request->image->path();
         }
         $article->fill($request->all());
