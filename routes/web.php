@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\MyController;
 use App\Http\Controllers\Admin\ProductController;
@@ -34,6 +35,7 @@ Route::prefix('admin')->group(function () {
     Route::resources([
         'categories' => CategoryController::class,
         'products' => ProductController::class,
+        'articles' => ArticleController::class,
     ]);
 });
 
