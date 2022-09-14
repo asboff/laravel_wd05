@@ -68,17 +68,17 @@
                                     @endforeach
                                 @endif
                             </div>
-                            <div class="form-group">
-                                <label class="col-md-12">Content</label>
-                                <div class="col-md-12">
-                                    <input name="image" type="file" class="form-control form-control-line>
-                                </div>
-                                @if($errors->has('image'))
-                                    @foreach($errors->get('image') as $error)
-                                        {{ $error }}
-                                    @endforeach
-                                @endif
-                            </div>
+{{--                            <div class="form-group">--}}
+{{--                                <label class="col-md-12">Content</label>--}}
+{{--                                <div class="col-md-12">--}}
+{{--                                    <input name="image" type="file" class="form-control form-control-line>--}}
+{{--                                </div>--}}
+{{--                                @if($errors->has('image'))--}}
+{{--                                    @foreach($errors->get('image') as $error)--}}
+{{--                                        {{ $error }}--}}
+{{--                                    @endforeach--}}
+{{--                                @endif--}}
+{{--                            </div>--}}
                             <div class="form-group">
                                 <div class="col-sm-12">
                                     <button type="submit" class="btn btn-success text-white">SAVE</button>

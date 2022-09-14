@@ -24,8 +24,16 @@ class ArticleRequest extends FormRequest
     public function rules()
     {
         return [
-            'image' => 'required|mimes:jpg,jpeg,png',
+//            'image' => 'required|size:512|mimes:jpg,jpeg,png',
             'content' => 'required|min:50|max:5000',
+        ];
+    }
+
+    public function messages()
+    {
+
+        return [
+            'content.min' => 'Поле :attribute должно быть больше :min символов'
         ];
     }
 }

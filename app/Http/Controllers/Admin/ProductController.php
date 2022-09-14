@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateProductRequest;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -15,8 +17,6 @@ class ProductController extends Controller
      */
     public function index()
     {
-
-
         $products = Product::paginate();
         return view('admin.products.index', compact('products'));
     }
@@ -28,7 +28,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        return view('admin.products.create', compact('categories'));
     }
 
     /**
@@ -37,9 +38,15 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateProductRequest $request)
     {
-        //
+        $data = $request->all();
+        if ($request->hasFile('image')){
+            //TODO
+            $data['image'] = 'ololo.png';
+        }
+        Product::create($request->all());
+
     }
 
     /**
@@ -71,7 +78,7 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(CreateProductRequest $request, Product $product)
     {
         //
     }

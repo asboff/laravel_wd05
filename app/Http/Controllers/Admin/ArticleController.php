@@ -37,12 +37,12 @@ class ArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ArticleRequest $request)
     {
-        if ($request->hasFile('image')){
-            $path = $request->image->store('articles');
-            $request->image = $request->image->path();
-        }
+//        if ($request->hasFile('image')){
+//            $path = $request->image->store('articles');
+//            $request->image = $request->image->path();
+//        }
         Article::create($request->all());
         return redirect(route('articles.index'));
     }
@@ -77,8 +77,9 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Article $article)
+    public function update(ArticleRequest $request, Article $article)
     {
+
         if ($request->hasFile('image')){
             $path = $request->image->store('articles');
             $request->image = $request->image->path();
