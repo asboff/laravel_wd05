@@ -15,7 +15,4 @@ yarn-error.log
 /.idea
 /.vscode
 /xtreme-admin-lite-master/
-#/app/Http/Controllers/Admin/CategoryController.php
-#/app/Http/Controllers/Admin/ProductController.php
-#/app/Models/Product.php
-#/database/migrations/2022_08_30_114509_create_products_table.php
+/electro-master
