@@ -47,6 +47,7 @@
                             <tr class="bg-light">
                                 <th class="border-top-0">ID</th>
                                 <th class="border-top-0">Name</th>
+                                <th class="border-top-0">Image</th>
                                 <th class="border-top-0">Actions</th>
                             </tr>
                             </thead>
@@ -55,6 +56,7 @@
                             <tr>
                                 <td>{{ $product->id }}</td>
                                 <td>{{ $product->name }}</td>
+                                <td><img src="{{ \Illuminate\Support\Facades\Storage::url($product->image) }}" alt="" style="width: 100px"></td>
                                 <td>
                                     <a href="{{ route('products.edit', compact('product')) }}">EDIT</a>
                                         <form action="{{ route('products.destroy', compact('product')) }}" method="post">

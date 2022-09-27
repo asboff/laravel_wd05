@@ -7,6 +7,7 @@ use App\Http\Requests\CreateProductRequest;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -42,10 +43,10 @@ class ProductController extends Controller
     {
         $data = $request->all();
         if ($request->hasFile('image')){
-            //TODO
-            $data['image'] = 'ololo.png';
+            $file = $request->file('image');
+            $data['image'] = Storage::put('images', $file);
         }
-        Product::create($request->all());
+        Product::create($data);
 
     }
 

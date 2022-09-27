@@ -9,7 +9,7 @@ class CreateProductRequest extends FormRequest
     public function prepareForValidation()
     {
         $price = (float) $this->input('price', 0);
-        $price = (int) $price * 100;
+        $price = (int) ($price * 100);
 
         $this->merge([
             'active' => (boolean) $this->input('active', false),

@@ -4,9 +4,12 @@ use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\MyController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SiteController;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,10 +22,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    $category = Category::all();
-    dump($category);
-    return view('welcome');
+Route::get('/', SiteController::class);
+Route::get('/cart', [CartController::class, 'getCart']);
+Route::get('/add_to_cart', [CartController::class, 'addToCart']);
+Route::get('/test', function (){
+//    $product = \App\Models\Product::inRandomOrder()->first();
+    $category = Category::inRandomOrder()->first();
+    dd($category->products);
 });
 
 Auth::routes();
