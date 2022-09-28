@@ -88,7 +88,7 @@
                                         @foreach($latestProducts as $product)
 										<div class="product">
 											<div class="product-img">
-												<img src="/site_assets/img/product01.png" alt="">
+												<img src="{{ $product->image }}" alt="">
 												<div class="product-label">
 													<span class="sale">-30%</span>
 													<span class="new">NEW</span>
