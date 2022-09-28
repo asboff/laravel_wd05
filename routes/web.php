@@ -25,6 +25,7 @@ use Illuminate\Support\Facades\Storage;
 
 Route::get('/', SiteController::class);
 Route::get('/store', StoreController::class);
+
 Route::get('/cart', [CartController::class, 'getCart']);
 Route::get('/add_to_cart', [CartController::class, 'addToCart']);
 Route::get('/test', function (){

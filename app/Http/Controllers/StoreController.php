@@ -8,10 +8,11 @@ use Illuminate\Http\Request;
 
 class StoreController extends Controller
 {
-    public function __invoke()
+    public function __invoke(Request $request)
     {
-        $products = Product::paginate(9);
-        $categories = Category::all();
+        $products = Product::query()->where('active', 1)->limit(9)->with('category')
+            ->get();
+        $categories = Category::withCount('products')->get();
         return view('site.store', compact(['products', 'categories']));
     }
 }

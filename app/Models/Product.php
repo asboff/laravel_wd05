@@ -28,6 +28,10 @@ class Product extends Model
         return "https://klike.net/uploads/posts/2019-05/1556708032_1.jpg";
     }
 
+    public function setImageAttribute($value){
+        $this->attributes['image'] = Str::lower($value);
+    }
+
     public function category(){
         return $this->belongsTo(Category::class);
     }
