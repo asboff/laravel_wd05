@@ -28,10 +28,10 @@ Route::get('/store', StoreController::class);
 
 Route::get('/cart', [CartController::class, 'getCart']);
 Route::get('/add_to_cart', [CartController::class, 'addToCart']);
-Route::get('/test', function (){
-//    $product = \App\Models\Product::inRandomOrder()->first();
-    $category = Category::inRandomOrder()->first();
-    dd($category->products);
+Route::post('/test', function (\Illuminate\Http\Request $request){
+    $data = $request->all();
+
+    return response()->json($data)->setStatusCode(401);
 });
 
 Auth::routes();
