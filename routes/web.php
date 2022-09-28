@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SiteController;
+use App\Http\Controllers\StoreController;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
@@ -23,6 +24,7 @@ use Illuminate\Support\Facades\Storage;
 */
 
 Route::get('/', SiteController::class);
+Route::get('/store', StoreController::class);
 Route::get('/cart', [CartController::class, 'getCart']);
 Route::get('/add_to_cart', [CartController::class, 'addToCart']);
 Route::get('/test', function (){
