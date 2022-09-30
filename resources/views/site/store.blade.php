@@ -207,7 +207,9 @@
 									</div>
 									<div class="product-body">
 										<p class="product-category">{{ $product->category->name }}</p>
-										<h3 class="product-name"><a href="#">{{ $product->name }}</a></h3>
+										<h3 class="product-name"><a href="{{ route('store.product',
+                                             ['product' => $product->id, 'category' => $product->category->id]) }}">
+                                                {{ $product->name }}</a></h3>
 										<h4 class="product-price">${{$product->price/100}}</h4>
 										<div class="product-rating">
 											<i class="fa fa-star"></i>
