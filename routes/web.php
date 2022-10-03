@@ -10,6 +10,7 @@ use App\Http\Controllers\ProductPageController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\StoreController;
 use App\Models\Category;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 
@@ -31,10 +32,13 @@ Route::get('/store/{category}/{product}', ProductPageController::class)->name('s
 
 Route::get('/cart', [CartController::class, 'getCart']);
 Route::get('/add_to_cart', [CartController::class, 'addToCart']);
-Route::post('/test', function (\Illuminate\Http\Request $request){
-    $data = $request->all();
+Route::get('/test', function (\Illuminate\Http\Request $request){
 
-    return response()->json($data)->setStatusCode(401);
+//    $client = new \GuzzleHttp\Client();
+//    $response = $client->request('GET', 'https://www.nbrb.by/api/exrates/rates/145?ondate=2016-7-1&periodicity=1');
+
+    $response = Http::acceptJson()->get('https://www.nbrb.by/api/exrates/rates/145?ondate=2016-7-1&periodicity=1');
+    dd($response->collect());
 });
 
 Auth::routes();

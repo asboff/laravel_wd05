@@ -19,7 +19,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::paginate();
-        return new CategoryCollection($categories);
+        return response()->json(new CategoryCollection($categories))->setStatusCode(200);
     }
 
     /**
@@ -30,8 +30,13 @@ class CategoryController extends Controller
      */
     public function store(CategoryRequest $request)
     {
-        Category::create($request->all());
-        return response($request->all(), 201);
+        try{
+            $category = Category::create($request->all());
+        }catch (\Exception $exception) {
+            return response()->json(['errors' => $exception->getMessage()])->setStatusCode(424);
+        }
+
+        return response()->json(new CategoryResource($category))->setStatusCode(201);
     }
 
     /**
@@ -42,7 +47,11 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        return new CategoryResource($category);
+        if($category){
+            return response()->json(new CategoryResource($category));
+        }else{
+            return response()->json(['errors' => ['Category not found']])->setStatusCode(404);
+        }
     }
 
     /**
@@ -66,7 +75,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        $category->delete();
-        return response('deleted', 200);
+        $category->destroy();
+        return response()->json(['message' => ['Deleted']])->setStatusCode(204);
     }
 }
