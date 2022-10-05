@@ -9,6 +9,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductPageController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\StoreController;
+use App\Http\Controllers\Test\ConverterController;
+use App\Http\Controllers\Test\ConverterPostController;
 use App\Models\Category;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
@@ -37,7 +39,7 @@ Route::get('/test', function (\Illuminate\Http\Request $request){
 //    $client = new \GuzzleHttp\Client();
 //    $response = $client->request('GET', 'https://www.nbrb.by/api/exrates/rates/145?ondate=2016-7-1&periodicity=1');
 
-    $response = Http::acceptJson()->get('https://www.nbrb.by/api/exrates/rates/145?ondate=2016-7-1&periodicity=1');
+    $response = Http::acceptJson()->get('https://www.nbrb.by/api/exrates/rates/');
     dd($response->collect());
 });
 
@@ -54,5 +56,8 @@ Route::prefix('admin')->group(function () {
         'articles' => ArticleController::class,
     ]);
 });
+Route::get('/test/converter', ConverterController::class);
+Route::post('/test/converter', ConverterPostController::class);
+
 
 
