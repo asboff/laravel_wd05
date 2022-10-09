@@ -60,14 +60,17 @@ Route::get('/test/converter', ConverterController::class);
 Route::post('/test/converter', ConverterPostController::class);
 
 Route::get('/test', function(\Illuminate\Http\Request $request){
+    $response = Http::get('http://numbersapi.com/random');
+    $content = $response->body();
+    return view('test.number', compact('content'));
+});
+
+Route::post('/test', function(\Illuminate\Http\Request $request){
     $query = [
-        'min' => 0,
-        'max' => 10000,
         'default' => 'Unrealistic+number+bro',
     ];
-    $response = Http::get('http://numbersapi.com/random');
+    $response = Http::get('http://numbersapi.com/'.$request->input('number'), $query);
     dd($response->body());
-
 });
 
 
