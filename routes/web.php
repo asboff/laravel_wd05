@@ -67,7 +67,7 @@ Route::get('/test', function(\Illuminate\Http\Request $request){
 
 Route::post('/test', function(\Illuminate\Http\Request $request){
     $query = [
-        'default' => 'Unrealistic+number+bro',
+        'default' => 'Unrealistic_number_bro',
     ];
     $response = Http::get('http://numbersapi.com/'.$request->input('number'), $query);
     dd($response->body());
