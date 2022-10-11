@@ -60,9 +60,11 @@ Route::get('/test/converter', ConverterController::class);
 Route::post('/test/converter', ConverterPostController::class);
 
 Route::get('/test', function(\Illuminate\Http\Request $request){
-    $response = Http::get('http://numbersapi.com/random');
-    $content = $response->body();
-    return view('test.number', compact('content'));
+//    $job = new \App\Jobs\FirstJob('2mkk3rmk');
+//    $job->dispatch('2mkk3rmk');
+    \App\Jobs\FirstJob::dispatch('myEmails')->onQueue('myEmails');
+
+    \App\Jobs\FirstJob::dispatch('test')->onQueue('test');
 });
 
 Route::post('/test', function(\Illuminate\Http\Request $request){
