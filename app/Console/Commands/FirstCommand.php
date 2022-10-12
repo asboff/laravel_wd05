@@ -29,8 +29,7 @@ class FirstCommand extends Command
     {
         if (!$this->argument('currency')){
             $this->ask('Какую валюту');
-        }
-//        $this->info($this->argument('currency'));
+        };
         return 0;
     }
 }
