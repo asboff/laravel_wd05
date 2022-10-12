@@ -3,9 +3,11 @@
 namespace App\Console\Commands;
 
 use App\Jobs\CurrencyJob;
+use App\Mail\CurrencyMail;
 use Illuminate\Console\Command;
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
 
 class CurrencyCommand extends Command
 {
@@ -65,7 +67,8 @@ class CurrencyCommand extends Command
             'rate' => $thisCurrency['Cur_OfficialRate'],
         ];
 
-        CurrencyJob::dispatch($currencyParams);
+        $mail = new CurrencyMail($currencyParams);
+        Mail::send($mail);
         $this->info('Mail sent successfully!');
 
         return 0;

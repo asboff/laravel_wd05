@@ -30,7 +30,7 @@ class CurrencyMail extends Mailable
      */
     public function build()
     {
-        return $this->from('nbrb@ultrabank.net')->to('dear@custom.er')->view('emails.currency')
+        return $this->from('ololo1@mail.ru', 'Joe')->to('olol2@mail.ru')->view('emails.currency')
             ->with([
             'name' => $this->name,
             'scale' => $this->currencyScale,
