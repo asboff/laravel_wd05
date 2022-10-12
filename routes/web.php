@@ -12,6 +12,7 @@ use App\Http\Controllers\StoreController;
 use App\Http\Controllers\Test\ConverterController;
 use App\Http\Controllers\Test\ConverterPostController;
 use App\Models\Category;
+use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
@@ -62,9 +63,10 @@ Route::post('/test/converter', ConverterPostController::class);
 Route::get('/test', function(\Illuminate\Http\Request $request){
 //    $job = new \App\Jobs\FirstJob('2mkk3rmk');
 //    $job->dispatch('2mkk3rmk');
-    \App\Jobs\FirstJob::dispatch('myEmails')->onQueue('myEmails');
+//    \App\Jobs\FirstJob::dispatch('myEmails')->onQueue('myEmails');
+//
+    \App\Jobs\FirstJob::dispatch('test');
 
-    \App\Jobs\FirstJob::dispatch('test')->onQueue('test');
 });
 
 Route::post('/test', function(\Illuminate\Http\Request $request){
