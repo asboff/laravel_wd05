@@ -15,7 +15,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-         $schedule->command('queue:listen')->days([1, 3, 5])->dailyAt('14:30');
+         $schedule->command('currency:mail')->everyMinute();
     }
 
     /**
