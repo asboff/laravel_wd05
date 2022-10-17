@@ -39,9 +39,12 @@ Route::get('/test', function (\Illuminate\Http\Request $request){
 
 //    $client = new \GuzzleHttp\Client();
 //    $response = $client->request('GET', 'https://www.nbrb.by/api/exrates/rates/145?ondate=2016-7-1&periodicity=1');
-
-    $response = Http::acceptJson()->get('https://www.nbrb.by/api/exrates/rates/');
-    dd($response->collect());
+    $d = 111;
+   dd($d);
+});
+Route::get('/test2', function (\Illuminate\Http\Request $request){
+    $d = date('Y-m-d');
+   dd(Http::retry(3)->get('https://www.nbrb.by/api/exrates/rates?periodicity=0')->body());
 });
 
 Auth::routes();

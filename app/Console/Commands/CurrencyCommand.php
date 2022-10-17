@@ -33,7 +33,7 @@ class CurrencyCommand extends Command
     public function handle()
     {
         try{
-            $actualCurrencies = Http::get('https://www.nbrb.by/api/exrates/rates?periodicity=0')->json();
+            $actualCurrencies = Http::retry(3)->get('https://www.nbrb.by/api/exrates/rates?periodicity=0')->json();
         } catch(ConnectionException $exception){
             $this->error('Connection error. Try again later.');
             return 0;
