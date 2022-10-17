@@ -15,7 +15,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-         $schedule->command('currency:mail')->everyMinute();
+         $schedule->command('currency:save')->everyMinute();
     }
 
     /**
