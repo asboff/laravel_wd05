@@ -13,6 +13,7 @@ use App\Http\Controllers\Test\ConverterController;
 use App\Http\Controllers\Test\ConverterPostController;
 use App\Models\Category;
 use Illuminate\Http\Client\ConnectionException;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
@@ -43,8 +44,9 @@ Route::get('/test', function (\Illuminate\Http\Request $request){
    dd($d);
 });
 Route::get('/test2', function (\Illuminate\Http\Request $request){
-    $d = date('Y-m-d');
-   dd(Http::retry(3)->get('https://www.nbrb.by/api/exrates/rates?periodicity=0')->body());
+    App::setLocale('ru');
+
+    dd(__('welcome.welcome_text', ['name' => 'Amigo']));
 });
 
 Auth::routes();
@@ -68,7 +70,7 @@ Route::get('/test', function(\Illuminate\Http\Request $request){
 //    $job->dispatch('2mkk3rmk');
 //    \App\Jobs\FirstJob::dispatch('myEmails')->onQueue('myEmails');
 //
-    \App\Jobs\FirstJob::dispatch('test');
+
 
 });
 
