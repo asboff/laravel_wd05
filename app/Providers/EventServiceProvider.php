@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Events\ProductAddedEvent;
+use App\Listeners\ProductListener;
+use App\Listeners\ProductSubscriber;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -20,6 +23,10 @@ class EventServiceProvider extends ServiceProvider
         ],
     ];
 
+    protected $subscribe = [
+        ProductSubscriber::class,
+    ];
+
     /**
      * Register any events for your application.
      *
@@ -27,7 +34,6 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
     }
 
     /**

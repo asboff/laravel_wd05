@@ -36,18 +36,15 @@ Route::get('/store/{category}/{product}', ProductPageController::class)->name('s
 
 Route::get('/cart', [CartController::class, 'getCart']);
 Route::get('/add_to_cart', [CartController::class, 'addToCart']);
-Route::get('/test', function (\Illuminate\Http\Request $request){
-
-//    $client = new \GuzzleHttp\Client();
-//    $response = $client->request('GET', 'https://www.nbrb.by/api/exrates/rates/145?ondate=2016-7-1&periodicity=1');
-    $d = 111;
-   dd($d);
-});
 Route::get('/test2', function (\Illuminate\Http\Request $request){
-    App::setLocale('ru');
+    $user = \App\Models\User::query()->inRandomOrder()->first();
 
-    dd(__('welcome.welcome_text', ['name' => 'Amigo']));
 });
+//Route::get('/test2', function (\Illuminate\Http\Request $request){
+//    App::setLocale('ru');
+//
+//    dd(__('welcome.welcome_text', ['name' => 'Amigo']));
+//});
 
 Auth::routes();
 
@@ -65,21 +62,5 @@ Route::prefix('admin')->group(function () {
 Route::get('/test/converter', ConverterController::class);
 Route::post('/test/converter', ConverterPostController::class);
 
-Route::get('/test', function(\Illuminate\Http\Request $request){
-//    $job = new \App\Jobs\FirstJob('2mkk3rmk');
-//    $job->dispatch('2mkk3rmk');
-//    \App\Jobs\FirstJob::dispatch('myEmails')->onQueue('myEmails');
-//
-
-
-});
-
-Route::post('/test', function(\Illuminate\Http\Request $request){
-    $query = [
-        'default' => 'Unrealistic_number_bro',
-    ];
-    $response = Http::get('http://numbersapi.com/'.$request->input('number'), $query);
-    dd($response->body());
-});
 
 
