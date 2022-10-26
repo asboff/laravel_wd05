@@ -11,6 +11,7 @@ services:
         links:
             - php-fpm
             - mysql
+            - redis
     php-fpm:
         container_name: php_laravel05
         environment:
@@ -22,6 +23,7 @@ services:
             - ./:/var/www/html
         links:
             - mysql
+            - redis
     mysql:
         container_name: laravel_db
         image: mariadb:10.3
@@ -30,3 +32,5 @@ services:
         environment:
             - MYSQL_ROOT_PASSWORD=root
             - MYSQL_DATABASE=wd05
+    redis:
+        image: redis:latest

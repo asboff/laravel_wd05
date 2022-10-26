@@ -15,6 +15,7 @@ use App\Models\Category;
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 
@@ -37,7 +38,8 @@ Route::get('/store/{category}/{product}', ProductPageController::class)->name('s
 Route::get('/cart', [CartController::class, 'getCart']);
 Route::get('/add_to_cart', [CartController::class, 'addToCart']);
 Route::get('/test2', function (\Illuminate\Http\Request $request){
-    $user = \App\Models\User::query()->inRandomOrder()->first();
+    \Illuminate\Support\Facades\Redis::set('my_variable', 2222);
+   dd(\Illuminate\Support\Facades\Redis::get('my_variable'));
 
 });
 //Route::get('/test2', function (\Illuminate\Http\Request $request){
