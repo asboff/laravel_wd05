@@ -42,7 +42,6 @@ class ProductController extends Controller
     public function store(CreateProductRequest $request)
     {
         $data = $request->all();
-        dd($data);
         if ($request->hasFile('image')){
             $file = $request->file('image');
             $data['image'] = Storage::put('images', $file);
